@@ -23,6 +23,7 @@ int main()
      circle.setPosition(350.f, 100.f);
      Obstacle obstacle1(200);
      Weapon weapon;
+     //d
      while (window.isOpen())
     {
         deltaTime = clock.getElapsedTime().asSeconds();
