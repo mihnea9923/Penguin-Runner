@@ -32,7 +32,7 @@ int main()
      sf::Texture obstacleTexture2;
      sf::Texture obstacleTexture1;
      obstacleTexture2.loadFromFile("photos\\obstacle2.png");
-     //
+     
      obstacleTexture1.loadFromFile("photos\\obstacle.png");
      Obstacle obstacle1(obstacleTexture1 , 200);
     
