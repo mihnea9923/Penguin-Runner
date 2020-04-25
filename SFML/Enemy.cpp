@@ -7,12 +7,11 @@ Enemy::Enemy()
 {
 	body.setSize(sf::Vector2f(50.f, 50.f));
 	enemyTexture.loadFromFile("photos\\enemy.png");
-	enemyTexture2.loadFromFile("photos\\enemy2.png");
 	body.setTexture(&enemyTexture);
 	body.setOrigin(body.getSize() / 2.0f);
 }
 
-void Enemy::SetPostion(sf::Vector2f vector, Player player, sf::RenderWindow& window)
+void Enemy::SetPostion(sf::Vector2f vector, Player player,sf::RenderWindow& window)
 {
 	if (CheckColision(player))
 	{
@@ -24,16 +23,16 @@ void Enemy::SetPostion(sf::Vector2f vector, Player player, sf::RenderWindow& win
 		body.setPosition(vector);
 		set = true;
 	}
-	if (clock.getElapsedTime().asMilliseconds() > 3000)
+	if (clock.getElapsedTime().asMilliseconds() > 2800)
 	{
 		body.setPosition(player.GetPosition().x + 600.f, 350.f);
 		clock.restart();
 
 	}
+	
 }
 void Enemy::Draw(sf::RenderWindow& window)
 {
-
 	window.draw(body);
 }
 bool Enemy::CheckColision(Player player)

@@ -25,7 +25,7 @@ void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& wi
 		body.setPosition(vector);
 		set = true;
 	}
-	if (clock.getElapsedTime().asMilliseconds() > 3000)
+	if (clock.getElapsedTime().asMilliseconds() > 2300)
 	{
 		body.setPosition(player.GetPosition().x +600.f , 350.f );
 		clock.restart();

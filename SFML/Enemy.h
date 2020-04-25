@@ -17,7 +17,6 @@ private:
 	bool set = false;
 	bool movement = false;
 	sf::Texture enemyTexture;
-	sf::Texture enemyTexture2;
 	sf::Clock clock;
 	sf::Clock clock2;
 
