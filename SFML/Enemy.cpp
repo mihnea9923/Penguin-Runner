@@ -57,33 +57,6 @@ bool Enemy::CheckColision(Player player)
 	other.setOrigin(other.getSize().x / 2, other.getSize().y / 2);
 
 }
-void Enemy::Update(float deltaTime)
-{
-
-	UpdateTexture();
-	sf::Vector2f velocity;
-	//velocity.x = -deltaTime * speed;
-	velocity.y = 0;
-	body.move(velocity);
-}
 
 
-void Enemy::UpdateTexture()
-{
 
-	if (clock2.getElapsedTime().asSeconds() > 0.3)
-	{
-		if (movement == false)
-		{
-			movement = true;
-			body.setTexture(&enemyTexture);
-		}
-		else
-		{
-			movement = false;
-			body.setTexture(&enemyTexture2);
-		}
-		clock2.restart();
-	}
-
-}

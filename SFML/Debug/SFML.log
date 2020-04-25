@@ -1,5 +1,2 @@
 ﻿  Enemy.cpp
-  main.cpp
-C:\Users\Denisa\source\repos\Game\SFML\main.cpp(16,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Generating Code...
   SFML.vcxproj -> C:\Users\Denisa\source\repos\Game\Debug\SFML.exe

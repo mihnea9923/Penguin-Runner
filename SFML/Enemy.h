@@ -8,8 +8,6 @@ public:
 	Enemy();
 	void SetPostion(sf::Vector2f, Player play, sf::RenderWindow& window);
 	void Draw(sf::RenderWindow& window);
-	void Update(float deltaTime);
-	void UpdateTexture();
 	bool CheckColision(Player player);
 	sf::Vector2f GetPosition() { return  body.getPosition(); }
 	sf::Vector2f GetHalfSize() { return body.getSize() / 2.0f; }
