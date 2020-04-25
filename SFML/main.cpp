@@ -11,7 +11,7 @@ int main()
     sf::RenderWindow window(sf::VideoMode(512, 512), "SFML", sf::Style::Default | sf::Style::Resize | sf::Style::Close);
      
      sf::Texture playerTexture;
-     playerTexture.loadFromFile("tux_from_linux.png");
+     playerTexture.loadFromFile("photos\\tux_from_linux.png");
      srand(time(NULL));
     
      Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f , 100.0f , 150.f);
@@ -25,15 +25,15 @@ int main()
      circle.setPosition(350.f, 100.f);
      std::vector<Platform> platforms;
      sf::Texture texture;
-     texture.loadFromFile("03.png");
+     texture.loadFromFile("photos\\03.png");
      sf::RectangleShape rect;
      rect.setSize(sf::Vector2f(50.f , 50.f));
      rect.setTexture(&texture);
      sf::Texture obstacleTexture2;
      sf::Texture obstacleTexture1;
-     obstacleTexture2.loadFromFile("obstacle2.png");
-     
-     obstacleTexture1.loadFromFile("obstacle.png");
+     obstacleTexture2.loadFromFile("photos\\obstacle2.png");
+     //
+     obstacleTexture1.loadFromFile("photos\\obstacle.png");
      Obstacle obstacle1(obstacleTexture1 , 200);
     
      while (window.isOpen())
@@ -58,6 +58,7 @@ int main()
             }
       
         }
+        
         player.Update(deltaTime);
         sf::Vector2f vector(player.GetPosition().x + 500.f, player.GetPosition().y + 220);
         obstacle1.SetPostion(vector);
