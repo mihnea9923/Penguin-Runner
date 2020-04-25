@@ -50,6 +50,7 @@ int main()
             }
       
         }
+        //
         player.Update(deltaTime);
         sf::Vector2f vector(player.GetPosition().x + 500.f, player.GetPosition().y + 220);
         obstacle1.SetPostion(sf::Vector2f(vector.x ,350.f ),player,window);
