@@ -9,8 +9,9 @@ public:
 	sf::Vector2f GetPosition();
 	void Draw(sf::RenderWindow& window);
 	void Rotate(sf::View& view, int counter);
-	Collider GetCollider() { return Collider(body); };
+	Collider GetCollider() { return Collider(body);};
 	void Collision(sf::Vector2f direction);
+	sf::RectangleShape GetBody() { return body; }
 private:
 	float speed;
 	unsigned int row;
