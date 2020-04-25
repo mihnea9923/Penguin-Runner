@@ -25,6 +25,7 @@ int main()
      Obstacle obstacle1(200);
      Enemy enemy1;
      Weapon weapon;
+     //d
      while (window.isOpen())
     {
         deltaTime = clock.getElapsedTime().asSeconds();
