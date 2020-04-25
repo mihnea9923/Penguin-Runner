@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "Platform.h"
 #include "Obstacle.h"
+#include "Enemy.h"
 #include <vector>
 int main()
 {
@@ -22,6 +23,7 @@ int main()
      circle.setFillColor(sf::Color::Yellow);
      circle.setPosition(350.f, 100.f);
      Obstacle obstacle1(200);
+     Enemy enemy1;
      Weapon weapon;
      while (window.isOpen())
     {
@@ -49,6 +51,7 @@ int main()
         player.Update(deltaTime);
         sf::Vector2f vector(player.GetPosition().x + 500.f, player.GetPosition().y + 220);
         obstacle1.SetPostion(sf::Vector2f(vector.x ,350.f ),player,window);
+        enemy1.SetPostion(sf::Vector2f(vector.x, 450.f), player, window);
         sf::Vector2f direction;
        
             if (platform.GetColider().checkColision(player.GetCollider(), direction, 1.f))
@@ -61,6 +64,7 @@ int main()
         player.Draw(window);
         obstacle1.Update(deltaTime);
         obstacle1.Draw(window);
+        enemy1.Draw(window);
         platform.Draw(window);
         circle.setPosition(player.GetPosition().x + 500.f, player.GetPosition().y - 300.f);
         weapon.Update(player,window);
