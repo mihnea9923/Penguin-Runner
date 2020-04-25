@@ -33,6 +33,7 @@ void Fire::SetPostion(sf::Vector2f vector,Player player, sf::RenderWindow& windo
 	}
 
 }
+//
 void Fire::Draw(sf::RenderWindow& window)
 {
 	window.draw(body);
