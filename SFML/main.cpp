@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include<SFML/Audio.hpp>
 #include <iostream>
 #include "Weapon.h"
 #include "Player.h"
@@ -7,6 +8,8 @@
 #include "Platform.h"
 #include "Obstacle.h"
 #include "Enemy.h"
+#include "Fire.h"
+#include "Audio.h"
 #include <vector>
 int main()
 {
@@ -21,19 +24,22 @@ int main()
      sf::CircleShape circle;
      circle.setRadius(25.f);
      circle.setFillColor(sf::Color::Yellow);
-     circle.setPosition(350.f, 100.f);
+     circle.setPosition(200.f, 100.f);
      Obstacle obstacle1(200);
      Enemy enemy1;
+     Fire fire1(400);
      Weapon weapon;
-     //d
+	 Audio playEffectSound;
+	 playEffectSound.playFundalSong();
+	
+	 int counterSounds = 0;
      while (window.isOpen())
-    {
+    {	
         deltaTime = clock.getElapsedTime().asSeconds();
         if (deltaTime > 1.f / 20.f)
         {
             deltaTime = 1.f / 20.f;
         }
-       
         Platform platform(nullptr, sf::Vector2f(1200.f, 250.f), sf::Vector2f(player.GetPosition().x, 500.f));
         clock.restart();
         sf::Event evnt;
@@ -45,20 +51,27 @@ int main()
             case sf::Event::Closed:
                 window.close();
                 break;
-           
+			
             }
-      
+
         }
         player.Update(deltaTime);
         sf::Vector2f vector(player.GetPosition().x + 500.f, player.GetPosition().y + 220);
         obstacle1.SetPostion(sf::Vector2f(vector.x ,350.f ),player,window);
-        enemy1.SetPostion(sf::Vector2f(vector.x, 450.f), player, window);
+        enemy1.SetPostion(sf::Vector2f(vector.x, 350.f), player, window);
+        fire1.SetPostion(sf::Vector2f(vector.x, 350.f), player, window);
         sf::Vector2f direction;
-       
+        
             if (platform.GetColider().checkColision(player.GetCollider(), direction, 1.f))
-            {
+            {	
+				
+				if (counterSounds %7450==0) {
+					playEffectSound.playMaybeNextTime();
+				}
+				counterSounds++;
                 player.Collision(direction);
             }
+		
         view.setCenter(player.GetPosition().x + 250.f , player.GetPosition().y);
         window.clear(sf::Color(10, 191, 255));
         window.setView(view);
@@ -66,12 +79,14 @@ int main()
         obstacle1.Update(deltaTime);
         obstacle1.Draw(window);
         enemy1.Draw(window);
+        fire1.Update(deltaTime);
+        fire1.Draw(window);
         platform.Draw(window);
         circle.setPosition(player.GetPosition().x + 500.f, player.GetPosition().y - 300.f);
         weapon.Update(player,window);
         window.draw(circle);
         window.display();
-        
+		
     }
     
     return 0;

@@ -58,7 +58,7 @@ void Game::Update(sf::Clock& clock)
 		}
 	}
 	if (clock.getElapsedTime().asSeconds() > 0.01)
-	{
+	{	
 		for (auto e = players.begin() ; e != players.end(); e++)
 		{
 			e->move(sf::Vector2f(0.0f, 2.5f));

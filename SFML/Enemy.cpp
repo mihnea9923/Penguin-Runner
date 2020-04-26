@@ -7,12 +7,11 @@ Enemy::Enemy()
 {
 	body.setSize(sf::Vector2f(50.f, 50.f));
 	enemyTexture.loadFromFile("photos\\enemy.png");
-	enemyTexture2.loadFromFile("photos\\enemy2.png");
 	body.setTexture(&enemyTexture);
 	body.setOrigin(body.getSize() / 2.0f);
 }
 
-void Enemy::SetPostion(sf::Vector2f vector, Player player, sf::RenderWindow& window)
+void Enemy::SetPostion(sf::Vector2f vector, Player player,sf::RenderWindow& window)
 {
 	if (CheckColision(player))
 	{
@@ -24,16 +23,16 @@ void Enemy::SetPostion(sf::Vector2f vector, Player player, sf::RenderWindow& win
 		body.setPosition(vector);
 		set = true;
 	}
-	if (clock.getElapsedTime().asMilliseconds() > 3000)
+	if (clock.getElapsedTime().asMilliseconds() > 2800)
 	{
 		body.setPosition(player.GetPosition().x + 600.f, 350.f);
 		clock.restart();
 
 	}
+	
 }
 void Enemy::Draw(sf::RenderWindow& window)
 {
-
 	window.draw(body);
 }
 bool Enemy::CheckColision(Player player)
@@ -55,35 +54,7 @@ bool Enemy::CheckColision(Player player)
 	return false;
 	auto other = player.GetBody();
 	other.setOrigin(other.getSize().x / 2, other.getSize().y / 2);
-
-}
-void Enemy::Update(float deltaTime)
-{
-
-	UpdateTexture();
-	sf::Vector2f velocity;
-	//velocity.x = -deltaTime * speed;
-	velocity.y = 0;
-	body.move(velocity);
 }
 
 
-void Enemy::UpdateTexture()
-{
 
-	if (clock2.getElapsedTime().asSeconds() > 0.3)
-	{
-		if (movement == false)
-		{
-			movement = true;
-			body.setTexture(&enemyTexture);
-		}
-		else
-		{
-			movement = false;
-			body.setTexture(&enemyTexture2);
-		}
-		clock2.restart();
-	}
-
-}
