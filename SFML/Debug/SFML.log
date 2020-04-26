@@ -1,1 +1,9 @@
-﻿  SFML.vcxproj -> E:\PenguinRunner\Debug\SFML.exe
+﻿  Audio.cpp
+  Game.cpp
+E:\PenguinRunner\SFML\Game.cpp(11,20): warning C4018: '<': signed/unsigned mismatch
+E:\PenguinRunner\SFML\Game.cpp(76,61): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  Obstacle.cpp
+  Player.cpp
+  Generating Code...
+E:\PenguinRunner\SFML\Game.cpp(76,52): warning C4244: 'argument': conversion from 'float' to 'unsigned int', possible loss of data
+  SFML.vcxproj -> E:\PenguinRunner\Debug\SFML.exe

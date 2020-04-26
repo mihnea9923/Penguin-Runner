@@ -4,7 +4,7 @@
 #include <thread>
 using namespace std;
 Obstacle::Obstacle(int speed) 
-{
+{	
 	body.setSize(sf::Vector2f(50.f, 50.f));
 	this->speed = speed;
 	obstacleTexture2.loadFromFile("photos\\obstacle2.png");
@@ -14,10 +14,12 @@ Obstacle::Obstacle(int speed)
 }
 
 void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& window)
-{
+{	
+	
 	if (CheckColision(player))
-	{
-		std::this_thread::sleep_for(2s);
+	{	
+
+		std::this_thread::sleep_for(4s);
 		window.close();
 	}
 	if (set == false)
@@ -26,7 +28,7 @@ void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& wi
 		set = true;
 	}
 	if (clock.getElapsedTime().asMilliseconds() > 2300)
-	{
+	{	
 		body.setPosition(player.GetPosition().x +600.f , 350.f );
 		clock.restart();
 		
