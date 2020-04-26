@@ -54,7 +54,6 @@ bool Enemy::CheckColision(Player player)
 	return false;
 	auto other = player.GetBody();
 	other.setOrigin(other.getSize().x / 2, other.getSize().y / 2);
-
 }
 
 

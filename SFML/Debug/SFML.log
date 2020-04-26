@@ -1,3 +1,1 @@
-﻿  main.cpp
-C:\Users\Denisa\source\repos\Game\SFML\main.cpp(17,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  SFML.vcxproj -> C:\Users\Denisa\source\repos\Game\Debug\SFML.exe
+﻿  SFML.vcxproj -> E:\PenguinRunner\Debug\SFML.exe

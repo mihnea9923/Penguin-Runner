@@ -10,7 +10,7 @@ public:
 	void Draw(sf::RenderWindow& window);
 	bool CheckColision(Player player);
 	sf::Vector2f GetPosition() { return  body.getPosition(); }
-	sf::Vector2f GetHalfSize() { return body.getSize() / 2.0f; }
+	sf::Vector2f GetHalfSize() { return body.getSize() / 2.0f; }//adrian
 
 private:
 	sf::RectangleShape body;
