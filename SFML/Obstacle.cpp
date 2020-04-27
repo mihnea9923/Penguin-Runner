@@ -4,7 +4,7 @@
 #include <thread>
 using namespace std;
 Obstacle::Obstacle(int speed) 
-{	
+{
 	body.setSize(sf::Vector2f(50.f, 50.f));
 	this->speed = speed;
 	obstacleTexture2.loadFromFile("photos\\obstacle2.png");
@@ -13,13 +13,12 @@ Obstacle::Obstacle(int speed)
 	body.setOrigin(body.getSize() / 2.0f);
 }
 
-void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& window)
-{	
-	
-	if (CheckColision(player))
-	{	
 
-		std::this_thread::sleep_for(4s);
+void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& window)
+{
+	if (CheckColision(player) && player.invincible == false)
+	{
+		std::this_thread::sleep_for(2s);
 		window.close();
 	}
 	if (set == false)
@@ -27,8 +26,8 @@ void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& wi
 		body.setPosition(vector);
 		set = true;
 	}
-	if (clock.getElapsedTime().asMilliseconds() > 2300)
-	{	
+	if (clock.getElapsedTime().asMilliseconds() > 5000)
+	{
 		body.setPosition(player.GetPosition().x +600.f , 350.f );
 		clock.restart();
 		
@@ -76,6 +75,7 @@ void Obstacle::UpdateTexture()
 	
 	if (clock2.getElapsedTime().asSeconds() > 0.3)
 	{
+	
 		if (movement == false)
 		{
 			movement = true;

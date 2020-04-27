@@ -15,6 +15,7 @@ int main()
 {
     sf::RenderWindow window(sf::VideoMode(512, 512), "SFML", sf::Style::Default | sf::Style::Resize | sf::Style::Close);
     sf::Texture playerTexture;
+    //comme
      playerTexture.loadFromFile("photos\\tux_from_linux.png");
      srand(time(NULL));
      Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f , 100.0f , 150.f);

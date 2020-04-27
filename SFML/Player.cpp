@@ -16,6 +16,11 @@ void Player::Draw(sf::RenderWindow& window)
 {
 	
 	window.draw(body);
+	if (invincible == true)
+	{
+		window.draw(circle);
+	}
+	
 	
 }
 sf::Vector2f Player::GetPosition()
@@ -49,8 +54,18 @@ void Player::Collision(sf::Vector2f direction)
 		velocity.y = 0.f;
 	}
 }
-void Player::Update(float deltaTime)
+void Player::Update(float deltaTime )
 {
+	if (clock.getElapsedTime().asSeconds() > 5)
+	{
+		Invincibility();
+		if (clock.getElapsedTime().asSeconds() > 15)
+		{
+			clock.restart();
+			invincible = false;
+		}
+	}
+	
 	velocity.x = 0.f;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
@@ -83,4 +98,13 @@ void Player::Update(float deltaTime)
 	animation.Update(row,deltaTime, faceRight);
 	body.setTextureRect(animation.uvRect);
 	body.move(velocity * deltaTime);
+}
+void Player::Invincibility()
+{
+	
+	circle.setRadius(65.f);
+	circle.setPosition(body.getPosition().x - 55 , body.getPosition().y - 50);
+	invincible = true;
+	circle.setFillColor(sf::Color(159,159,159 , 100));
+
 }

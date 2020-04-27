@@ -3,8 +3,8 @@
 
 Audio::Audio()
 {	
-	this->maybeNextTimeBuffer.loadFromFile("E:\\PenguinRunner\\SFML\\audio\\maybe-next-time.wav");
-	this->backroundSongBuffer.loadFromFile("E:\\PenguinRunner\\SFML\\audio\\Inner Circle- Bad Boys.wav");
+	this->maybeNextTimeBuffer.loadFromFile("audio\\maybe-next-time.wav");
+	this->backroundSongBuffer.loadFromFile("audio\\Inner Circle- Bad Boys.wav");
 }
 void Audio::playMaybeNextTime()
 {

@@ -15,7 +15,7 @@ Fire::Fire(int speed)
 
 void Fire::SetPostion(sf::Vector2f vector,Player player, sf::RenderWindow& window)
 {
-	if (CheckColision(player))
+	if (CheckColision(player) && player.invincible == false)
 	{
 		std::this_thread::sleep_for(2s);
 		window.close();

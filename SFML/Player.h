@@ -5,13 +5,16 @@ class Player
 {
 public:
 	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed , float jumpHeight);
-	void Update(float deltaTime);
+	void Update(float deltaTime );
 	sf::Vector2f GetPosition();
 	void Draw(sf::RenderWindow& window);
 	void Rotate(sf::View& view, int counter);
 	Collider GetCollider() { return Collider(body);};
 	void Collision(sf::Vector2f direction);
 	sf::RectangleShape GetBody() { return body; }
+	void Invincibility();
+	bool invincible = false;
+
 private:
 	float speed;
 	unsigned int row;
@@ -21,5 +24,7 @@ private:
 	sf::Vector2f velocity;
 	float jumpHeight;
 	bool canJump;
+	sf::CircleShape circle;
+	sf::Clock clock;
 };
 
