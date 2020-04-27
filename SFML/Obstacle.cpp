@@ -11,6 +11,7 @@ Obstacle::Obstacle(int speed)
 	obstacleTexture1.loadFromFile("photos\\obstacle.png");
 	body.setTexture(&obstacleTexture1);
 	body.setOrigin(body.getSize() / 2.0f);
+	jumpedOver = false;
 }
 
 
@@ -30,6 +31,7 @@ void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& wi
 	{
 		body.setPosition(player.GetPosition().x +600.f , 350.f );
 		clock.restart();
+		jumpedOver = false;
 		
 	}
 }

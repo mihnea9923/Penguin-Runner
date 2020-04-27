@@ -8,6 +8,7 @@
 #include "Platform.h"
 #include "Obstacle.h"
 #include "Enemy.h"
+#include "Score.h"
 #include "Fire.h"
 #include "Audio.h"
 #include <vector>
@@ -34,6 +35,7 @@ int main()
 	 playEffectSound.playFundalSong();
 	
 	 int counterSounds = 0;
+     Score score;
      while (window.isOpen())
     {	
         deltaTime = clock.getElapsedTime().asSeconds();
@@ -56,6 +58,7 @@ int main()
             }
 
         }
+
         player.Update(deltaTime);
         sf::Vector2f vector(player.GetPosition().x + 500.f, player.GetPosition().y + 220);
         obstacle1.SetPostion(sf::Vector2f(vector.x ,350.f ),player,window);
@@ -87,7 +90,8 @@ int main()
         weapon.Update(player,window);
         window.draw(circle);
         window.display();
-		
+        score.IncreaseScore(player, obstacle1);
+        std::cout << score.GetScore() << std::endl;
     }
     
     return 0;
