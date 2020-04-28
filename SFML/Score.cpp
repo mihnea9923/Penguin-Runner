@@ -7,8 +7,7 @@ Score::Score()
 	TextScore.setPosition({ 10 , 10 });
 	TextScore.setFont(arial);
 	TextScore.setFillColor(sf::Color::Black);
-	//TextScore.setString("SCORE: 10");
-	//TextScore.setScale(sf::Vector2f(0.7f, 0.7f));
+	
 }
 void Score::IncreaseScore(Player player, Obstacle& obstacle,Enemy& enemy)
 {

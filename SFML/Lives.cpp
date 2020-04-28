@@ -14,16 +14,13 @@ void Lives::DrawLives(sf::RenderWindow& window)
 void Lives::UpdateLives(Player& player)
 {
 
-
-	sf::RectangleShape heart1;
-	heart1.setSize({ 50.f, 50.f });
-	sf::RectangleShape heart2;
-	heart2.setSize({ 50.f, 50.f });
-	sf::RectangleShape heart3;
-	heart3.setSize({ 50.f, 50.f });
-	hearts.push_back(heart1);
-	hearts.push_back(heart2);
-	hearts.push_back(heart3);
+	for (int i = 1; i <= lives; i++)
+	{
+		sf::RectangleShape heart1;
+		heart1.setSize({ 50.f, 50.f });
+		hearts.push_back(heart1);
+	}
+	
 	heartTexture.loadFromFile("heart.png");
 	for (int i = 1; i <= lives; i++)
 	{

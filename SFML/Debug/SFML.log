@@ -1,11 +1,17 @@
-﻿  Enemy.cpp
-  Fire.cpp
-  Lives.cpp
-  Obstacle.cpp
-  main.cpp
-C:\Users\menta\source\repos\Game\SFML\main.cpp(22,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Player.cpp
+﻿  Animation.cpp
+C:\Users\menta\source\repos\Game\SFML\Animation.cpp(9,38): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\menta\source\repos\Game\SFML\Animation.cpp(10,39): warning C4244: '=': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+  Game.cpp
+C:\Users\menta\source\repos\Game\SFML\Game.cpp(10,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Score.cpp
-  Weapon.cpp
+  main.cpp
   Generating Code...
   SFML.vcxproj -> C:\Users\menta\source\repos\Game\Debug\SFML.exe

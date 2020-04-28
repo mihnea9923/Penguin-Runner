@@ -1,3 +1,4 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include<SFML/Audio.hpp>
 #include <iostream>
@@ -12,10 +13,9 @@
 #include "Audio.h"
 #include <vector>
 #include "Lives.h"
-#include "Game.h"
-int main()
+class Game
 {
-    Game game;
-    game.ConfigureGame();
-    return 0;
-}
+public:
+	void ConfigureGame();
+};
+
