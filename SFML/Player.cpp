@@ -1,28 +1,32 @@
 #include "Player.h"
-
-Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed , float jumpHeight)
+#include <thread>          
+#include <chrono>  
+using namespace std;
+Player::Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed , float jumpHeight , Lives* liv)
 	:animation(texture , imageCount , switchTime)
 {	
 	this->speed = speed;
 	row = 0;
+	this->liv = liv;
 	faceRight = true;
 	body.setSize(sf::Vector2f(100.0f, 150.0f));
 	body.setOrigin(body.getSize() / 2.0f);
 	body.setPosition(300.f, 106.0f);
 	body.setTexture(texture);
 	this->jumpHeight = jumpHeight;
+	
 }
 void Player::Draw(sf::RenderWindow& window)
 {
-	
+
 	window.draw(body);
 	if (invincible == true)
 	{
 		window.draw(circle);
 	}
-	
-	
+
 }
+
 sf::Vector2f Player::GetPosition()
 {
 	return body.getPosition();
@@ -56,7 +60,8 @@ void Player::Collision(sf::Vector2f direction)
 }
 void Player::Update(float deltaTime )
 {
-	if (clock.getElapsedTime().asSeconds() > 5)
+	
+	if (clock.getElapsedTime().asSeconds() > 10)
 	{
 		Invincibility();
 		if (clock.getElapsedTime().asSeconds() > 15)

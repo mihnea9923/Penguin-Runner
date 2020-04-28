@@ -4,7 +4,6 @@
 #include "Weapon.h"
 #include "Player.h"
 #include "Collider.h"
-#include "Game.h"
 #include "Platform.h"
 #include "Obstacle.h"
 #include "Enemy.h"
@@ -12,28 +11,25 @@
 #include "Fire.h"
 #include "Audio.h"
 #include <vector>
+#include "Lives.h"
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(512, 512), "SFML", sf::Style::Default | sf::Style::Resize | sf::Style::Close);
     sf::Texture playerTexture;
     //comme
+    Lives* lives = new Lives();
      playerTexture.loadFromFile("photos\\tux_from_linux.png");
      srand(time(NULL));
-     Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f , 100.0f , 150.f);
+     Player player(&playerTexture, sf::Vector2u(3, 9), 0.3f , 100.0f , 150.f , lives);
      float deltaTime = 0.0f;
      sf::View view(sf::Vector2f(0.0f, 0.0f), sf::Vector2f(650.0f, 650.0f));
      sf::Clock clock ;
-     sf::CircleShape circle;
-     circle.setRadius(25.f);
-     circle.setFillColor(sf::Color::Yellow);
-     circle.setPosition(200.f, 100.f);
      Obstacle obstacle1(200);
      Enemy enemy1;
-     Fire fire1(400);
+     Fire fire1(350);
      Weapon weapon;
-	 Audio playEffectSound;
+     Audio playEffectSound;
 	 playEffectSound.playFundalSong();
-	
 	 int counterSounds = 0;
      Score score;
      while (window.isOpen())
@@ -60,10 +56,11 @@ int main()
         }
 
         player.Update(deltaTime);
+        //player.Lives(player);
         sf::Vector2f vector(player.GetPosition().x + 500.f, player.GetPosition().y + 220);
-        obstacle1.SetPostion(sf::Vector2f(vector.x ,350.f ),player,window);
-        enemy1.SetPostion(sf::Vector2f(vector.x, 350.f), player, window);
-        fire1.SetPostion(sf::Vector2f(vector.x, 350.f), player, window);
+        obstacle1.SetPostion(sf::Vector2f(vector.x ,350.f ),player,window,lives);
+        enemy1.SetPostion(sf::Vector2f(vector.x, 350.f), player, window,fire1,lives);
+        
         sf::Vector2f direction;
         
             if (platform.GetColider().checkColision(player.GetCollider(), direction, 1.f))
@@ -75,23 +72,25 @@ int main()
 				counterSounds++;
                 player.Collision(direction);
             }
-		
-        view.setCenter(player.GetPosition().x + 250.f , player.GetPosition().y);
         window.clear(sf::Color(10, 191, 255));
+        view.setCenter(player.GetPosition().x + 250.f , player.GetPosition().y);
         window.setView(view);
-        player.Draw(window);
+        score.Update(player);
+        lives->UpdateLives(player);
         obstacle1.Update(deltaTime);
+        fire1.Update(deltaTime);
+        player.Draw(window);
+        score.Draw(window);
         obstacle1.Draw(window);
         enemy1.Draw(window);
-        fire1.Update(deltaTime);
+        lives->DrawLives(window);
+       // player.DrawLives(window);
         fire1.Draw(window);
         platform.Draw(window);
-        circle.setPosition(player.GetPosition().x + 500.f, player.GetPosition().y - 300.f);
-        weapon.Update(player,window);
-        window.draw(circle);
+        //weapon.Update(player,window);
         window.display();
-        score.IncreaseScore(player, obstacle1);
-        std::cout << score.GetScore() << std::endl;
+        score.IncreaseScore(player, obstacle1 , enemy1);
+        
     }
     
     return 0;

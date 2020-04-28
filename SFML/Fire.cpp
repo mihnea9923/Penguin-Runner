@@ -13,23 +13,26 @@ Fire::Fire(int speed)
 	body.setOrigin(body.getSize());
 }
 
-void Fire::SetPostion(sf::Vector2f vector,Player player, sf::RenderWindow& window)
+void Fire::SetPostion(sf::Vector2f vector,Player& player, sf::RenderWindow& window,sf::RectangleShape body1, Lives* lives)
 {
 	if (CheckColision(player) && player.invincible == false)
 	{
-		std::this_thread::sleep_for(2s);
-		window.close();
-	}
-	if (set == false)
-	{
-		body.setPosition(vector);
-		set = true;
-	}
-	if (clock.getElapsedTime().asMilliseconds() > 2800)
-	{
-		body.setPosition(player.GetPosition().x + 580.f, 350.f);
-		clock.restart();
+		if (penguinCollision == false)
+		{
+			lives->DecreaseLives();
+			penguinCollision = true;
 
+		}
+	}
+	if (CheckColision(player))
+	{
+		body.move({ -200.f , 0 });
+	}
+	if (clock.getElapsedTime().asMilliseconds() > 1700 )
+	{
+		body.setPosition(body1.getPosition().x ,body1.getPosition().y);
+		clock.restart();
+		penguinCollision = false;
 	}
 
 }
@@ -55,8 +58,7 @@ bool Fire::CheckColision(Player player)
 		return true;
 	}
 	return false;
-	auto other = player.GetBody();
-	other.setOrigin(other.getSize().x / 2, other.getSize().y / 2);
+	
 
 }
 void Fire::Update(float deltaTime)

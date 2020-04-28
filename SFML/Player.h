@@ -1,10 +1,12 @@
 #pragma once
 #include "Animation.h"
 #include "Collider.h"
+class Lives;
+
 class Player
 {
 public:
-	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed , float jumpHeight);
+	Player(sf::Texture* texture, sf::Vector2u imageCount, float switchTime, float speed , float jumpHeight,Lives* liv);
 	void Update(float deltaTime );
 	sf::Vector2f GetPosition();
 	void Draw(sf::RenderWindow& window);
@@ -14,7 +16,7 @@ public:
 	sf::RectangleShape GetBody() { return body; }
 	void Invincibility();
 	bool invincible = false;
-
+	Lives* liv;
 private:
 	float speed;
 	unsigned int row;
@@ -26,5 +28,7 @@ private:
 	bool canJump;
 	sf::CircleShape circle;
 	sf::Clock clock;
+	
+	
 };
 

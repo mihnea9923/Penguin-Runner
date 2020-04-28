@@ -2,10 +2,11 @@
 #include "Player.h"
 #include <chrono>
 #include <thread>
+
 using namespace std;
 Obstacle::Obstacle(int speed) 
 {
-	body.setSize(sf::Vector2f(50.f, 50.f));
+	body.setSize(sf::Vector2f(70.f, 70.f));
 	this->speed = speed;
 	obstacleTexture2.loadFromFile("photos\\obstacle2.png");
 	obstacleTexture1.loadFromFile("photos\\obstacle.png");
@@ -15,23 +16,33 @@ Obstacle::Obstacle(int speed)
 }
 
 
-void Obstacle::SetPostion(sf::Vector2f vector,Player player,sf::RenderWindow& window)
+void Obstacle::SetPostion(sf::Vector2f vector,Player& player,sf::RenderWindow& window , Lives* lives)
 {
 	if (CheckColision(player) && player.invincible == false)
 	{
-		std::this_thread::sleep_for(2s);
-		window.close();
+		if (penguinCollision == false)
+		{
+			lives->DecreaseLives();
+			penguinCollision = true;
+
+		}
 	}
-	if (set == false)
+	if (CheckColision(player))
 	{
-		body.setPosition(vector);
-		set = true;
+		body.move({ -200.f , 0 });
 	}
-	if (clock.getElapsedTime().asMilliseconds() > 5000)
+	if (clock.getElapsedTime().asMilliseconds() > 3500)
 	{
-		body.setPosition(player.GetPosition().x +600.f , 350.f );
+		LoadTextures();
+		float y = 343.f;
+		if (isWorm == true)
+		{
+			y += 20;
+		}
+		body.setPosition(player.GetPosition().x +600.f , y );
 		clock.restart();
 		jumpedOver = false;
+		penguinCollision = false;
 		
 	}
 }
@@ -60,6 +71,31 @@ bool Obstacle::CheckColision(Player player)
 	auto other = player.GetBody();
 	other.setOrigin(other.getSize().x / 2, other.getSize().y / 2);
 		
+}
+void Obstacle::LoadTextures()
+{
+	int j = rand() % 3;
+	if (j == 0)
+	{
+		obstacleTexture2.loadFromFile("photos\\obstacle2.png");
+		obstacleTexture1.loadFromFile("photos\\obstacle.png");
+		isWorm = false;
+		speed = 200;
+	}
+	else if (j == 1)
+	{
+		isWorm = false;
+		obstacleTexture2.loadFromFile("photos\\bat1.png");
+		obstacleTexture1.loadFromFile("photos\\bat2.png");
+		speed = 200;
+	}
+	else if (j == 2)
+	{
+		obstacleTexture2.loadFromFile("photos\\skyll-frame1.png");
+		obstacleTexture1.loadFromFile("photos\\skyll-frame2.png");
+		isWorm = true;
+		speed = 250;
+	}
 }
 void Obstacle::Update(float deltaTime)
 {

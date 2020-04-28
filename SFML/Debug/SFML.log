@@ -1,2 +1,11 @@
 ﻿  Enemy.cpp
+  Fire.cpp
+  Lives.cpp
+  Obstacle.cpp
+  main.cpp
+C:\Users\menta\source\repos\Game\SFML\main.cpp(22,16): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Player.cpp
+  Score.cpp
+  Weapon.cpp
+  Generating Code...
   SFML.vcxproj -> C:\Users\menta\source\repos\Game\Debug\SFML.exe

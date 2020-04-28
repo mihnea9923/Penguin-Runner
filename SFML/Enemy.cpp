@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "Player.h"
+
 #include <chrono>
 #include <thread>
 using namespace std;
@@ -11,24 +12,34 @@ Enemy::Enemy()
 	body.setOrigin(body.getSize() / 2.0f);
 }
 
-void Enemy::SetPostion(sf::Vector2f vector, Player player,sf::RenderWindow& window)
+void Enemy::SetPostion(sf::Vector2f vector, Player& player,sf::RenderWindow& window , Fire &fire,Lives* lives)
 {
 	if (CheckColision(player) && player.invincible == false)
 	{
-		std::this_thread::sleep_for(2s);
-		window.close();
+		if (penguinCollision == false)
+		{
+			lives->DecreaseLives();
+			penguinCollision = true;
+
+		}
 	}
-	if (set == false)
+	if (CheckColision(player))
 	{
-		body.setPosition(vector);
-		set = true;
+		body.move({ -200.f , 0 });
 	}
-	if (clock.getElapsedTime().asMilliseconds() > 2800)
+	if (clock.getElapsedTime().asMilliseconds() > 8000 && player.GetPosition().x > body.getPosition().x)
 	{
-		body.setPosition(player.GetPosition().x + 600.f, 350.f);
+		body.setPosition(player.GetPosition().x + 500.f, 350.f);
 		clock.restart();
+		jumpedOver = false;
+		penguinCollision = false;
 
 	}
+	if (clock.getElapsedTime().asMilliseconds() > 8000)
+	{
+		clock.restart();
+	}
+		fire.SetPostion({ body.getPosition().x , 450.f},player,window,body,lives);
 	
 }
 void Enemy::Draw(sf::RenderWindow& window)
